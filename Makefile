@@ -1,5 +1,5 @@
-C_SOURCES = $(wildcard src/kernel/*.c src/lib/*.c)
-HEADERS   = $(wildcard src/kernel/*.h src/lib/*.h)
+C_SOURCES = $(wildcard src/kernel/*.c src/lib/*.c src/drivers/*.c)
+HEADERS   = $(wildcard src/kernel/*.h src/lib/*.h src/drivers/*.h)
 
 ASM_SOURCES = $(wildcard src/boot/*.asm)
 
@@ -35,7 +35,7 @@ os.bin: $(OBJ) $(ASM_OBJ)
 	nasm -felf32 $< -o $@
 
 %.o : %.c ${HEADERS} 
-	$(GCC) -c $< -o $@ $(GCC_FLAGS) -I./src/lib
+	$(GCC) -c $< -o $@ $(GCC_FLAGS) -I./src/lib -I./src/drivers
 
 clean:
 	rm -f *.iso *.bin 

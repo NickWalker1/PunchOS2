@@ -19,3 +19,9 @@ typedef unsigned long size_t;
 #define BASE_HEX 16
 
 #define NULL (void*)0
+
+#define ASSERT(x...)                                                     \
+  if (!(x)) {                                                            \
+      printf ("Error: '%s' [%s:%i]\n", #x, __FILE__, __LINE__);          \
+      halt();   					                                     \
+    }
